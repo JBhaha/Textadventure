@@ -31,8 +31,8 @@ public class main {
         alex.getBackpack().fillBackpack(sword);
         alex.getBackpack().fillBackpack(apple);
         alex.getBackpack().showInventory();
-        alex.getBackpack().emptyBackpack(apple);
-        alex.getBackpack().showInventory();
+
+
     }
 
 }
