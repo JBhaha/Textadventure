@@ -20,6 +20,7 @@ public class Adventurer {
         this.attackdmg = attackdmg;
     }
 
+
     //Getters and Setters
 
 

@@ -15,12 +15,20 @@ public class main {
         scanner = new Scanner(System.in);
     }
 
+    //Create Objects
+    static Object rope = new Object("rope");
+    static Object sword = new Object("sword");
+    static Adventurer alex = new Adventurer("Alex", 20, 1);
+    static Backpack defaultBackpack = new Backpack(20);
+
+
+    //main method
     public static void main(String[] args) {
-        Adventurer alex = new Adventurer("Alex", 20, 1);
-        Backpack defaultBackpack = new Backpack(20);
-        Object rope = new Object("rope");
+
         alex.setBackpack(defaultBackpack);
-        System.out.println(alex.getBackpack().getSpace());
+        alex.getBackpack().fillBackpack(rope);
+        alex.getBackpack().fillBackpack(sword);
+        alex.getBackpack().showInventory();
     }
 
 }
