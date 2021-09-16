@@ -1,4 +1,3 @@
-import java.util.Scanner;
 /**
  * Class for adventurer (maybe selectable)
  **/
@@ -6,7 +5,7 @@ public class Adventurer {
 
     // Declaring Attributes for the Adventurer...
     private String name;
-    private double life;
+    private double health = 40;
     private double attackdmg;
     private int experience = 0;
     private int level = 1;
@@ -16,9 +15,9 @@ public class Adventurer {
 
     //Constructor
 
-    public Adventurer(String name, double life, double attackdmg) {
+    public Adventurer(String name, double health, double attackdmg) {
         this.name = name;
-        this.life = life;
+        this.health = health;
         this.attackdmg = attackdmg;
         this.experience = experience;
         this.level = level;
@@ -31,8 +30,8 @@ public class Adventurer {
         return name;
     }
 
-    public double getLife() {
-        return life;
+    public double getHealth() {
+        return health;
     }
 
     public double getAttackdmg() {
@@ -43,8 +42,8 @@ public class Adventurer {
         this.name = name;
     }
 
-    public void setLife(double life) {
-        this.life = life;
+    public void setHealth(double health) {
+        this.health = health;
     }
 
     public void setAttackdmg(double attackdmg) {
@@ -76,11 +75,25 @@ public class Adventurer {
     }
     // Methods
 
-    public void exp(){
+    // this Method adds exp
+    public void addexp(){
         if (experience == 100){
             level++;
             experience = 0;
         }
     }
+    // this Method removes exp
+    public void removeexp(){
+        if (experience == 100){
+            level--;
+            experience = 0;
+        }
+    }
 
-}
+    // this Method adds life points
+    public void addhealth(){
+        health = health + 15;
+        }
+
+    }
+
