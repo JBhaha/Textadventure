@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.util.Arrays;
+
 /**
  * Class for backpacks (maybe selectable)
  **/
@@ -18,6 +19,17 @@ public class Backpack {
     public void fillBackpack(Object object){
         inventory[used] = object;
         used++;
+    }
+
+    //Method for dropping things from the backpack
+    public void emptyBackpack(Object object){
+        String name = object.getName();
+        for (int i = 0; i < used; i++) {
+            if (inventory[i].getName().equals(name)){
+                inventory[i] = null;
+                used--;
+            }
+        }
     }
 
     //Method for printing inventory out
