@@ -19,6 +19,8 @@ public class main {
         Adventurer alex = new Adventurer("Alex", 20, 1);
         Backpack defaultBackpack = new Backpack(20);
         Object rope = new Object("rope");
+        alex.setBackpack(defaultBackpack);
+        System.out.println(alex.getBackpack().getSpace());
     }
 
 }

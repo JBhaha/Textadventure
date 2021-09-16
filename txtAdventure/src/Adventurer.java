@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class Adventurer {
 
     //Declaring Attributes for the Adventurer...
-    String name;
-    double life;
-    double attackdmg;
+    private String name;
+    private Backpack backpack;
+    private double life;
+    private double attackdmg;
 
 
     //Constructor
@@ -42,6 +43,11 @@ public class Adventurer {
         this.attackdmg = attackdmg;
     }
 
+    public Backpack getBackpack() {
+        return backpack;
+    }
 
-
+    public void setBackpack(Backpack backpack) {
+        this.backpack = backpack;
+    }
 }
