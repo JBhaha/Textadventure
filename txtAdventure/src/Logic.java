@@ -31,6 +31,10 @@ public class Logic {
         }
     }
 
-
+    // Method to stop game until user enters anything
+    public void pressToContinue(){
+        System.out.println("\nEnter anything to continue...");
+        scanner.next();
+    }
 
 }
