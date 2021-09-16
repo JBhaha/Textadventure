@@ -16,11 +16,9 @@ public class main {
     }
 
     public static void main(String[] args) {
-        main Program = new main();
-        Program.run();
+        Adventurer alex = new Adventurer("Alex", 20, 1);
+        Backpack defaultBackpack = new Backpack(20);
+        Object rope = new Object("rope");
     }
 
-    public void run(){
-
-    }
 }

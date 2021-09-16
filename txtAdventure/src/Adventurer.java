@@ -4,14 +4,13 @@ import java.util.Scanner;
  **/
 public class Adventurer {
 
-    // Declaring Attributes for the Adventurer...
+    //Declaring Attributes for the Adventurer...
     String name;
     double life;
     double attackdmg;
 
 
     //Constructor
-
     public Adventurer(String name, double life, double attackdmg) {
         this.name = name;
         this.life = life;
@@ -19,8 +18,6 @@ public class Adventurer {
     }
 
     //Getters and Setters
-
-
     public String getName() {
         return name;
     }
