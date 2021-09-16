@@ -2,5 +2,5 @@ import java.util.Scanner;
 /**
  * Class for backpacks (maybe selectable)
  **/
-public class backpack {
+public class Backpack {
 }
