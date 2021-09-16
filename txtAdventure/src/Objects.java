@@ -5,8 +5,16 @@ import java.util.Scanner;
 public class Objects {
     private String name;
 
-    //Konstruktor
-    public Objects(){
+    //Constructor
+    public Objects(String name){
+        this.name = name;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
