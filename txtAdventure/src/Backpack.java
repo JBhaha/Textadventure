@@ -3,6 +3,7 @@ import java.util.Scanner;
  * Class for backpacks (maybe selectable)
  **/
 public class Backpack {
+    //Declaring Attributes for the backpacks...
     private int space;
 
     //Constructor
@@ -10,6 +11,7 @@ public class Backpack {
         this.space = space;
     }
 
+    //Getter and setter
     public int getSpace() {
         return space;
     }
