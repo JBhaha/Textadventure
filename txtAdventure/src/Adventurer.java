@@ -23,6 +23,7 @@ public class Adventurer {
         this.level = level;
     }
 
+
     //Getters and Setters
 
 
