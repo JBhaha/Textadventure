@@ -19,7 +19,7 @@ public class main {
     static Object rope = new Object("rope");
     static Object sword = new Object("sword");
     static Object apple = new Object("apple");
-    static Adventurer alex = new Adventurer("Alex", 20, 1);
+    static Adventurer alex = new Adventurer("Alex", 40, 50, 1);
     static Backpack defaultBackpack = new Backpack(20);
 
 

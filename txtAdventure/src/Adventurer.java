@@ -5,7 +5,8 @@ public class Adventurer {
 
     // Declaring Attributes for the Adventurer...
     private String name;
-    private double health = 40;
+    private double hp;
+    private double maxhp;
     private double attackdmg;
     private int experience = 0;
     private int level = 1;
@@ -15,9 +16,10 @@ public class Adventurer {
 
     //Constructor
 
-    public Adventurer(String name, double health, double attackdmg) {
+    public Adventurer(String name, double hp, double maxhp, double attackdmg) {
         this.name = name;
-        this.health = health;
+        this.maxhp = maxhp;
+        this.hp = maxhp;
         this.attackdmg = attackdmg;
         this.experience = experience;
         this.level = level;
@@ -31,8 +33,8 @@ public class Adventurer {
         return name;
     }
 
-    public double getHealth() {
-        return health;
+    public double getHp() {
+        return hp;
     }
 
     public double getAttackdmg() {
@@ -44,7 +46,7 @@ public class Adventurer {
     }
 
     public void setHealth(double health) {
-        this.health = health;
+        this.hp = hp;
     }
 
     public void setAttackdmg(double attackdmg) {
@@ -93,8 +95,14 @@ public class Adventurer {
 
     // this Method adds life points
     public void addhealth(){
-        health = health + 15;
+        hp = hp + 15;
         }
 
+        // Method for attacking
+    public void attack(){
+            hp = hp - attackdmg;
+        System.out.println(hp);
     }
+
+}
 

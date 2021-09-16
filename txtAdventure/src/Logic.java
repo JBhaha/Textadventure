@@ -23,4 +23,18 @@ public class Logic {
 
     }
 
+    // Method to clear console
+
+    public void clearConsole(){
+        for (int i = 0; i < 100; i++) {
+            System.out.println();
+        }
+    }
+
+    // Method to stop game until user enters anything
+    public void pressToContinue(){
+        System.out.println("\nEnter anything to continue...");
+        scanner.next();
+    }
+
 }
