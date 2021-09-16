@@ -8,6 +8,8 @@ public class Adventurer {
     private String name;
     private double life;
     private double attackdmg;
+    private int experience = 0;
+    private int level = 1;
     private Backpack backpack;
 
 
@@ -18,6 +20,8 @@ public class Adventurer {
         this.name = name;
         this.life = life;
         this.attackdmg = attackdmg;
+        this.experience = experience;
+        this.level = level;
     }
 
     //Getters and Setters
@@ -55,6 +59,28 @@ public class Adventurer {
         this.backpack = backpack;
     }
 
+    public int getExperience() {
+        return experience;
+    }
 
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    // Methods
+
+    public void exp(){
+        if (experience == 100){
+            level++;
+            experience = 0;
+        }
+    }
 
 }
