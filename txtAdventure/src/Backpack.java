@@ -9,4 +9,12 @@ public class Backpack {
     public Backpack(int space){
         this.space = space;
     }
+
+    public int getSpace() {
+        return space;
+    }
+
+    public void setSpace(int space) {
+        this.space = space;
+    }
 }
