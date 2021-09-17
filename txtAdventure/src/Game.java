@@ -46,16 +46,23 @@ public class Game {
         for (int j = 1; j < houseSpace + 1; j++) {
             System.out.println("Option " + j + ": Take " + houseObjects[j-1].getName());
         }
+        System.out.println("Opiton 9: Inventory");
         int input = scanner.nextInt();
         if (input == 0){
             garden();
-        }else if (input > 0){
+        }else if (input > 0 && input < 9){
             for (int i = 1; i < houseSpace + 1; i++) {
                 if (input == i){
                     wantsObject(houseObjects, houseSpace, space, input);
                     house();
                 }
             }
+        }else if (input == 9){
+            Object object = alex.getBackpack().inventory();
+            if (object != null) {
+                leaveObject(object);
+            }
+            house();
         }else{
             error();
             house();
@@ -76,13 +83,16 @@ public class Game {
                 "Behind you, there's the path back to the garden.");
     }
 
-
-
     //Method for errors because of the user
     public void error(){
         System.out.println("Sorry! You're input was invalid. Please check your Input!");
     }
-
+    //put object back
+    public void leaveObject(Object object){
+        houseObjects[houseSpace] = object;
+        System.out.println(houseObjects[houseSpace].getName());
+        houseSpace++;
+    }
 
     //check if user wants to take a object
     public void wantsObject(Object[] objects, int maxSpace, int space, int input){
