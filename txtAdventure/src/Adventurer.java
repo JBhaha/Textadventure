@@ -3,9 +3,10 @@
  **/
 public class Adventurer {
 
+    public static double hp;
     // Declaring Attributes for the Adventurer...
     private String name;
-    private double hp;
+    private double hps;
     private double maxhp;
     private double attackdmg;
     private int experience = 0;
@@ -109,6 +110,7 @@ public class Adventurer {
             hp = hp + 15;
             }
         }
+
 
         // Method for attacking
     public void attack(){
