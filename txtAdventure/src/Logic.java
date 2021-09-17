@@ -23,8 +23,8 @@ public class Logic {
 
     }
 
+    
     // Method to clear console
-
     public void clearConsole(){
         for (int i = 0; i < 100; i++) {
             System.out.println();

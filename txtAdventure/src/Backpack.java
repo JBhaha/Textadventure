@@ -35,7 +35,6 @@ public class Backpack {
             help[j - 1] = inventory[j];
             inventory[j] = null;
         }
-
         used--;
         for (int j = 0; j < used; j++) {
             inventory[j] = help[j];
