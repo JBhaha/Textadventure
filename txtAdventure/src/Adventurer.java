@@ -104,5 +104,6 @@ public class Adventurer {
         System.out.println(hp);
     }
 
+
 }
 
