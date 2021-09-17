@@ -15,18 +15,9 @@ public class main {
         scanner = new Scanner(System.in);
     }
 
-    //Create Objects
-    static Object rope = new Object("rope");
-    static Object sword = new Object("sword");
-    static Object apple = new Object("apple");
-    static Game game = new Game();
-    static Adventurer alex = new Adventurer("Alex", 40, 50, 1);
-    static Backpack defaultBackpack = new Backpack(20);
-
-
     //main method
     public static void main(String[] args) {
-        alex.setBackpack(defaultBackpack);
+        Game game = new Game();
         game.start();
     }
 
