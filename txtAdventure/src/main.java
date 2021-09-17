@@ -25,13 +25,12 @@ public class main {
 
     //main method
     public static void main(String[] args) {
-
         alex.setBackpack(defaultBackpack);
         alex.getBackpack().fillBackpack(rope);
         alex.getBackpack().fillBackpack(sword);
         alex.getBackpack().fillBackpack(apple);
         alex.getBackpack().showInventory();
-        alex.getBackpack().emptyBackpack(sword);
+        alex.getBackpack().emptyBackpack(rope);
         alex.getBackpack().showInventory();
     }
 

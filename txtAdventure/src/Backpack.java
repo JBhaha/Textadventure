@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 /**
  * Class for backpacks (maybe selectable)
@@ -23,12 +22,22 @@ public class Backpack {
 
     //Method for dropping things from the backpack
     public void emptyBackpack(Object object){
+        Object[] help = new Object[space];
         String name = object.getName();
-        for (int i = 0; i < used; i++) {
-            if (inventory[i].getName().equals(name)){
-                inventory[i] = null;
-                used--;
-            }
+        int i = 0;
+        while (!inventory[i].getName().equals(name)){
+            help[i] = inventory[i];
+            inventory[i] = null;
+            i++;
+        }
+        inventory[i] = null;
+        for (int j = i + 1; j < used; j++) {
+            help[j - 1] = inventory[j];
+            inventory[j] = null;
+        }
+        used--;
+        for (int j = 0; j < used; j++) {
+            inventory[j] = help[j];
         }
     }
 
