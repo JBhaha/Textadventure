@@ -8,7 +8,6 @@ public class Place {
     }
 
     //Getter and setter
-
     public String getName() {
         return name;
     }
