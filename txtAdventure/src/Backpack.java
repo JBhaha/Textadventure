@@ -59,4 +59,8 @@ public class Backpack {
     public void setSpace(int space) {
         this.space = space;
     }
+
+    public static int getUsed() { return used; }
+
+    public static void setUsed(int used) { Backpack.used = used; }
 }
