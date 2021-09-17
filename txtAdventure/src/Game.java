@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Game {
     static Scanner scanner;
     static int houseSpace = 3;
-    static Object[] houseObjects = new Object[houseSpace];
+    static int space = 5;
+    static Object[] houseObjects = new Object[space];
     Adventurer alex = new Adventurer("Alex", 40, 50, 1);
     static Backpack defaultBackpack = new Backpack(20);
     //Constructor
@@ -24,19 +25,30 @@ public class Game {
     }
 
     //Starting House
-    public void house(){
+    public void house() {
         System.out.println("You're standing in a dark room. You can't remember how you got here.\n" +
                 "You stand up. There's a door at the end of the room.");
-        if (houseSpace >= 0){
+        if (houseSpace >= 0) {
             System.out.println("On the Desk is:");
             for (int i = 0; i < houseSpace; i++) {
                 System.out.println("- " + houseObjects[i].getName());
             }
         }
         String next = whatDoYouDo();
-        if (next.equals("use door")){
+
+        //check if user wants to take something
+        boolean take = false;
+        for (int i = 0; i < houseSpace; i++) {
+            if (next.equals("take " + houseObjects[i].getName())) {
+                alex.getBackpack().fillBackpack(houseObjects[i]);
+                emptyRoom(houseObjects[i]);
+                house();
+                take = true;
+            }
+        }
+        if (!take && next.equals("use door")) {
             garden();
-        }else{
+        } else if (!take){
             error();
             house();
         }
@@ -81,6 +93,28 @@ public class Game {
     public void error(){
         System.out.println("Sorry! You're input was invalid. Please check your Input! Write the keyword use + " +
                 "the Object you want to use!!");
+    }
+
+
+    //Method for taking something from the place
+    public void emptyRoom(Object object){
+        Object[] help = new Object[houseSpace];
+        String name = object.getName();
+        int i = 0;
+        while (!houseObjects[i].getName().equals(name)){
+            help[i] = houseObjects[i];
+            houseObjects[i] = null;
+            i++;
+        }
+        houseObjects[i] = null;
+        for (int j = i + 1; j < houseSpace; j++) {
+            help[j - 1] = houseObjects[j];
+            houseObjects[j] = null;
+        }
+        houseSpace--;
+        for (int j = 0; j < houseSpace; j++) {
+            houseObjects[j] = help[j];
+        }
     }
 
 }

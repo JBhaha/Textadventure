@@ -20,6 +20,7 @@ public class Backpack {
         used++;
     }
 
+
     //Method for dropping things from the backpack
     public void emptyBackpack(Object object){
         Object[] help = new Object[space];
@@ -48,6 +49,7 @@ public class Backpack {
             System.out.println("- " +  inventory[i].getName());
         }
     }
+
 
     //Getter and setter
     public int getSpace() {
