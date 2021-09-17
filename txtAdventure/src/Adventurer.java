@@ -103,7 +103,11 @@ public class Adventurer {
 
     // this Method adds life points
     public void addhealth(){
-        hp = hp + 15;
+        if (hp == maxhp)
+            System.out.println(hp);
+        else {
+            hp = hp + 15;
+            }
         }
 
         // Method for attacking
