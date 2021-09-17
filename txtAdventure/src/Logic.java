@@ -37,4 +37,36 @@ public class Logic {
         scanner.next();
     }
 
+    // Method to enter a decision
+    public void enter(){
+        int auswahl = 0;
+        int anzauswahl = 3;
+
+
+
+        System.out.println("please select a number: ");
+        System.out.println("Option 1: ");
+        System.out.println("Option 2: ");
+        System.out.println("Option 3: ");
+        auswahl = scanner.nextInt();
+        if (auswahl == 1) {
+            System.out.println("do option 1");
+        }else if (auswahl == 2){
+            System.out.println("do option 2");
+        }
+        else if (auswahl == 3){
+            System.out.println("do option 3");
+        }
+
+
+
+    }
+
+    // Method for help
+    public void help(){
+
+
+
+    }
+
 }

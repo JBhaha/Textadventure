@@ -45,7 +45,7 @@ public class Adventurer {
         this.name = name;
     }
 
-    public void setHealth(double health) {
+    public void sethp(double health) {
         this.hp = hp;
     }
 
@@ -76,6 +76,14 @@ public class Adventurer {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public double getMaxhp() {
+        return maxhp;
+    }
+
+    public void setMaxhp(double maxhp) {
+        this.maxhp = maxhp;
+    }
     // Methods
 
     // this Method adds exp
@@ -95,7 +103,11 @@ public class Adventurer {
 
     // this Method adds life points
     public void addhealth(){
-        hp = hp + 15;
+        if (hp == maxhp)
+            System.out.println(hp);
+        else {
+            hp = hp + 15;
+            }
         }
 
         // Method for attacking
