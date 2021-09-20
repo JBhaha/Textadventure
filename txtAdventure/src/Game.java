@@ -7,8 +7,12 @@ public class Game {
     static int space = 5;
 
     //attributes for the house
-    static int houseSpace = 3;
+    static int houseSpace = 0;
     static Object[] houseObjects = new Object[space];
+
+    //attributes for the garden
+    static int gardenSpace = 0;
+    static Object[] gardenObjects = new Object[space];
 
     //attributes for the adventurer
     Adventurer alex = new Adventurer("Alex", 40, 50, 1);
@@ -21,8 +25,16 @@ public class Game {
 
         //objects which are in the house at the beginning
         houseObjects[0] = new Object("rope");
+        houseSpace++;
         houseObjects[1] = new Object("sword");
+        houseSpace++;
         houseObjects[2] =  new Object("apple");
+        houseSpace++;
+
+        //objects which are in the garden at the beginning
+        gardenObjects[0] = new Object("shovel");
+        gardenSpace++;
+
     }
 
     //Start method of the Textadventure!
@@ -41,26 +53,28 @@ public class Game {
                 System.out.println("- " + houseObjects[i].getName());
             }
         }
+        int counter = 0;
         System.out.println("Please select a number: ");
-        System.out.println("Option 0: Go through the door.");
-        for (int j = 1; j < houseSpace + 1; j++) {
-            System.out.println("Option " + j + ": Take " + houseObjects[j-1].getName());
-        }
-        System.out.println("Opiton 9: Inventory");
-        int input = scanner.nextInt();
+        System.out.println("Option " + counter + ": Go through the door.");
+        counter++;
+        int input = hereIs(houseSpace, houseObjects, counter);
         if (input == 0){
             garden();
         }else if (input > 0 && input < 9){
             for (int i = 1; i < houseSpace + 1; i++) {
                 if (input == i){
                     wantsObject(houseObjects, houseSpace, space, input);
+                    houseSpace--;
+                    alex.getBackpack().showInventory();
                     house();
                 }
             }
         }else if (input == 9){
             Object object = alex.getBackpack().inventory();
             if (object != null) {
-                leaveObject(object);
+                houseObjects[houseSpace] = object;
+                System.out.println(houseObjects[houseSpace].getName());
+                houseSpace++;
             }
             house();
         }else{
@@ -74,6 +88,37 @@ public class Game {
     public void garden(){
         System.out.println("You're standing in the garden in front of the house where you woke up.\n" +
                 "Theres a door into the house and a small path into the forest.");
+        int counter = 0;
+        System.out.println("Please select a number:");
+        System.out.println("Option " + counter + ": Go through the door");
+        counter++;
+        //System.out.println("Option " + counter + ": Take the Path");
+        //counter++;
+        int input = hereIs(gardenSpace, gardenObjects, counter);
+        if (input == 0){
+            house();
+        }else if (input > 0 && input < 9){
+            for (int i = 1; i < gardenSpace + 1; i++) {
+                if (input == i){
+                    wantsObject(gardenObjects, gardenSpace, space, input);
+                    alex.getBackpack().showInventory();
+                    gardenSpace--;
+                    garden();
+                }
+            }
+        }else if (input == 9){
+            Object object = alex.getBackpack().inventory();
+            if (object != null) {
+                gardenObjects[gardenSpace] = object;
+                System.out.println(gardenObjects[gardenSpace].getName());
+                gardenSpace++;
+            }
+            garden();
+        }else{
+            error();
+            garden();
+        }
+
 
     }
 
@@ -83,47 +128,60 @@ public class Game {
                 "Behind you, there's the path back to the garden.");
     }
 
+    //Method for the Objects which are in the place
+    public int hereIs(int placeSpace, Object[] placeObjects, int count){
+        for (int j = count; j < placeSpace + count; j++) {
+            System.out.println("Option " + j + ": Take " + placeObjects[j-count].getName());
+        }
+        System.out.println("Opiton 9: Inventory");
+        int input = scanner.nextInt();
+
+        //TODO: Überprüfung der eingabe
+
+        return input;
+    }
+
     //Method for errors because of the user
     public void error(){
         System.out.println("Sorry! You're input was invalid. Please check your Input!");
     }
-    //put object back
-    public void leaveObject(Object object){
-        houseObjects[houseSpace] = object;
-        System.out.println(houseObjects[houseSpace].getName());
-        houseSpace++;
-    }
+
 
     //check if user wants to take a object
     public void wantsObject(Object[] objects, int maxSpace, int space, int input){
-        for (int i = 1; i < maxSpace + 1; i++) {
+        Object[] help = new Object[maxSpace];
+        maxSpace++;
+        for (int i = 1; i < maxSpace; i++) {
             if (input == i){
                 alex.getBackpack().fillBackpack(objects[i-1]);
-                emptyRoom(objects[i-1]);
+                help = emptyRoom(objects[i-1], objects, space);
+                space--;
+                if (space >= 0) System.arraycopy(help, 0, objects, 0, space);
                 alex.getBackpack().showInventory();
             }
         }
     }
 
     //Method for taking something from the place
-    public void emptyRoom(Object object){
-        Object[] help = new Object[houseSpace];
+    public Object[] emptyRoom(Object object, Object placeObjects[], int placeSpace) {
+        Object[] help = new Object[placeSpace];
         String name = object.getName();
         int i = 0;
-        while (!houseObjects[i].getName().equals(name)){
-            help[i] = houseObjects[i];
-            houseObjects[i] = null;
+        while (!placeObjects[i].getName().equals(name)) {
+            help[i] = placeObjects[i];
+            placeObjects[i] = null;
             i++;
         }
-        houseObjects[i] = null;
-        for (int j = i + 1; j < houseSpace; j++) {
-            help[j - 1] = houseObjects[j];
-            houseObjects[j] = null;
+        placeObjects[i] = null;
+        for (int j = i + 1; j < placeSpace; j++) {
+            help[j - 1] = placeObjects[j];
+            placeObjects[j] = null;
         }
-        houseSpace--;
-        for (int j = 0; j < houseSpace; j++) {
-            houseObjects[j] = help[j];
+        placeSpace--;
+        for (int j = 0; j < placeSpace; j++) {
+            placeObjects[j] = help[j];
         }
+        return placeObjects;
     }
 
 }

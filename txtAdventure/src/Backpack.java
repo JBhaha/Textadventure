@@ -6,13 +6,13 @@ public class Backpack {
     //Declaring Attributes for the backpacks...
     static Scanner scanner;
     private static Object returnObject;//This Object is vor the method inventory() do not touch! xD
-    private int space;
+    private final int space;
     private static int used = 0;
     private static Object[] inventory;
 
     //Constructor
     public Backpack(int space){
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         this.space = space;
         inventory = new Object[space];
     }
@@ -57,9 +57,7 @@ public class Backpack {
             inventory[j] = null;
         }
         used--;
-        for (int j = 0; j < used; j++) {
-            inventory[j] = help[j];
-        }
+        if (used >= 0) System.arraycopy(help, 0, inventory, 0, used);
     }
 
     //Method for printing inventory out
@@ -71,16 +69,5 @@ public class Backpack {
     }
 
 
-    //Getter and setter
-    public int getSpace() {
-        return space;
-    }
 
-    public void setSpace(int space) {
-        this.space = space;
-    }
-
-    public static int getUsed() { return used; }
-
-    public static void setUsed(int used) { Backpack.used = used; }
 }
