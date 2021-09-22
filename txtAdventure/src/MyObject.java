@@ -2,12 +2,12 @@ import java.util.Scanner;
 /**
  * Class for objects like apples
  **/
-public class Object {
+public class MyObject {
     //Declaring Attributes for the objects...
     private String name;
 
     //Constructor
-    public Object(String name){
+    public MyObject(String name){
         this.name = name;
     }
 

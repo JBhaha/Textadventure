@@ -5,26 +5,26 @@ import java.util.Scanner;
 public class Backpack {
     //Declaring Attributes for the backpacks...
     static Scanner scanner;
-    private static Object returnObject;//This Object is vor the method inventory() do not touch! xD
+    private static MyObject returnMyObject;//This Object is vor the method inventory() do not touch! xD
     private final int space;
     private static int used = 0;
-    private static Object[] inventory;
+    private static MyObject[] inventory;
 
     //Constructor
     public Backpack(int space){
         scanner = new Scanner(System.in);
         this.space = space;
-        inventory = new Object[space];
+        inventory = new MyObject[space];
     }
 
     //Method for putting things in the backpack
-    public void fillBackpack(Object object){
-        inventory[used] = object;
+    public void fillBackpack(MyObject myObject){
+        inventory[used] = myObject;
         used++;
     }
 
     //Method for the options in your Inventory
-    public Object inventory(){
+    public MyObject inventory(){
         System.out.println("Bitte wähle Option:");
         for (int i = 1; i < used + 1; i++) {
             System.out.println(i +": Drop " +  inventory[i-1].getName());
@@ -33,18 +33,18 @@ public class Backpack {
         int input = scanner.nextInt();
         for (int j = 0; j < used; j++) {
             if (input == j+1){
-                returnObject = inventory[j];
+                returnMyObject = inventory[j];
                 emptyBackpack(inventory[j]);
             }
         }
-        return returnObject;
+        return returnMyObject;
     }
 
     //Method for dropping things from the backpack
-    public void emptyBackpack(Object object){
+    public void emptyBackpack(MyObject myObject){
 
-        Object[] help = new Object[space];
-        String name = object.getName();
+        MyObject[] help = new MyObject[space];
+        String name = myObject.getName();
         int i = 0;
         while (!inventory[i].getName().equals(name)){
             help[i] = inventory[i];
