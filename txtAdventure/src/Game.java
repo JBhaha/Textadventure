@@ -16,7 +16,7 @@ public class Game {
 
     //attributes for the adventurer
     Adventurer alex = new Adventurer("Alex", 40, 50, 1);
-    static Backpack defaultBackpack = new Backpack(20);
+    Backpack defaultBackpack = new Backpack(20);
 
     //Constructor
     public Game(){
