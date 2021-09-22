@@ -4,15 +4,18 @@ import java.util.Scanner;
  **/
 public class Game {
     static Scanner scanner;
-    static int space = 5;
+
+    //Make Objects
+    MyObject rope = new MyObject("rope");
+    MyObject sword = new MyObject("sword");
+    MyObject apple = new MyObject("apple");
+    MyObject shovel = new MyObject("shovel");
 
     //attributes for the house
-    static int houseSpace = 0;
-    static MyObject[] houseMyObjects = new MyObject[space];
+    private Place house = new Place(5, "house");
 
     //attributes for the garden
-    static int gardenSpace = 0;
-    static MyObject[] gardenMyObjects = new MyObject[space];
+    private Place garden = new Place(5, "garden");
 
     //attributes for the adventurer
     Adventurer alex = new Adventurer("Alex", 40, 50, 1);
@@ -24,17 +27,12 @@ public class Game {
         alex.setBackpack(defaultBackpack);
 
         //objects which are in the house at the beginning
-        houseMyObjects[0] = new MyObject("rope");
-        houseSpace++;
-        houseMyObjects[1] = new MyObject("sword");
-        houseSpace++;
-        houseMyObjects[2] =  new MyObject("apple");
-        houseSpace++;
+        house.addObjectsToPlace(rope);
+        house.addObjectsToPlace(sword);
+        house.addObjectsToPlace(apple);
 
         //objects which are in the garden at the beginning
-        gardenMyObjects[0] = new MyObject("shovel");
-        gardenSpace++;
-
+        garden.addObjectsToPlace(shovel);
     }
 
     //Start method of the Textadventure!
@@ -47,24 +45,19 @@ public class Game {
     public void house() {
         System.out.println("You're standing in a dark room. You can't remember how you got here.\n" +
                 "You stand up. There's a door at the end of the room.");
-        if (houseSpace >= 0) {
-            System.out.println("On the Desk is:");
-            for (int i = 0; i < houseSpace; i++) {
-                System.out.println("- " + houseMyObjects[i].getName());
-            }
-        }
+        house.printObjects();
         int counter = 0;
         System.out.println("Please select a number: ");
         System.out.println("Option " + counter + ": Go through the door.");
         counter++;
-        int input = hereIs(houseSpace, houseMyObjects, counter);
+        int input = hereIs(house.getCount(), house.getPlaceObjects(), counter);
         if (input == 0){
             garden();
         }else if (input > 0 && input < 9){
-            for (int i = 1; i < houseSpace + 1; i++) {
+            for (int i = 1; i < house.getCount() + 1; i++) {
                 if (input == i){
-                    wantsObject(houseMyObjects, houseSpace, space, input);
-                    houseSpace--;
+                    wantsObject(house.getPlaceObjects(), house.getCount(), house.getMaxSpace(), input);
+                    house.setCount(house.getCount() - 1);
                     alex.getBackpack().showInventory();
                     house();
                 }
@@ -72,9 +65,9 @@ public class Game {
         }else if (input == 9){
             MyObject myObject = alex.getBackpack().inventory();
             if (myObject != null) {
-                houseMyObjects[houseSpace] = myObject;
-                System.out.println(houseMyObjects[houseSpace].getName());
-                houseSpace++;
+                house.getPlaceObjects()[house.getCount()] = myObject;
+                System.out.println(house.getPlaceObjects()[house.getCount()].getName());
+                house.setCount(house.getCount() - 1);
             }
             house();
         }else{
@@ -94,24 +87,24 @@ public class Game {
         counter++;
         //System.out.println("Option " + counter + ": Take the Path");
         //counter++;
-        int input = hereIs(gardenSpace, gardenMyObjects, counter);
+        int input = hereIs(garden.getCount(), garden.getPlaceObjects(), counter);
         if (input == 0){
             house();
         }else if (input > 0 && input < 9){
-            for (int i = 1; i < gardenSpace + 1; i++) {
+            for (int i = 1; i < garden.getCount() + 1; i++) {
                 if (input == i){
-                    wantsObject(gardenMyObjects, gardenSpace, space, input);
+                    wantsObject(garden.getPlaceObjects(), garden.getCount(), garden.getMaxSpace(), input);
                     alex.getBackpack().showInventory();
-                    gardenSpace--;
+                    garden.setCount(garden.getCount() - 1);
                     garden();
                 }
             }
         }else if (input == 9){
             MyObject myObject = alex.getBackpack().inventory();
             if (myObject != null) {
-                gardenMyObjects[gardenSpace] = myObject;
-                System.out.println(gardenMyObjects[gardenSpace].getName());
-                gardenSpace++;
+                garden.getPlaceObjects()[garden.getCount()] = myObject;
+                System.out.println(garden.getPlaceObjects()[garden.getCount()].getName());
+                garden.setCount(garden.getCount() - 1);
             }
             garden();
         }else{
