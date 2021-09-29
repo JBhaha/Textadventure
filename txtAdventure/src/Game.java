@@ -12,10 +12,14 @@ public class Game {
     MyObject shovel = new MyObject("shovel");
 
     //attributes for the house
-    private Place house = new Place(5, "house");
+    private String houseText = "You're standing in a dark room. You can't remember how you got here.\n" +
+            "You stand up. There's a door at the end of the room.";
+    private Place house = new Place(5, "house", houseText);
 
     //attributes for the garden
-    private Place garden = new Place(5, "garden");
+    private String gardenText = "You're standing in the garden in front of the house where you woke up.\n" +
+            "Theres a door into the house and a small path into the forest.";
+    private Place garden = new Place(5, "garden", gardenText);
 
     //attributes for the adventurer
     Adventurer alex = new Adventurer("Alex", 40, 50, 1);
@@ -33,7 +37,7 @@ public class Game {
 
         //objects which are in the garden at the beginning
         garden.addObjectsToPlace(shovel);
-    }
+    }   
 
     //Start method of the Textadventure!
     public void start(){
@@ -43,8 +47,7 @@ public class Game {
 
     //Starting House
     public void house() {
-        System.out.println("You're standing in a dark room. You can't remember how you got here.\n" +
-                "You stand up. There's a door at the end of the room.");
+        house.showPlace();
         house.printObjects();
         int counter = 0;
         System.out.println("Please select a number: ");
@@ -65,9 +68,7 @@ public class Game {
         }else if (input == 9){
             MyObject myObject = alex.getBackpack().inventory();
             if (myObject != null) {
-                house.getPlaceObjects()[house.getCount()] = myObject;
-                System.out.println(house.getPlaceObjects()[house.getCount()].getName());
-                house.setCount(house.getCount() - 1);
+                house.droppItem(myObject);
             }
             house();
         }else{
@@ -79,14 +80,11 @@ public class Game {
 
     //outside starting house
     public void garden(){
-        System.out.println("You're standing in the garden in front of the house where you woke up.\n" +
-                "Theres a door into the house and a small path into the forest.");
+        garden.showPlace();
         int counter = 0;
         System.out.println("Please select a number:");
         System.out.println("Option " + counter + ": Go through the door");
         counter++;
-        //System.out.println("Option " + counter + ": Take the Path");
-        //counter++;
         int input = hereIs(garden.getCount(), garden.getPlaceObjects(), counter);
         if (input == 0){
             house();
@@ -102,9 +100,7 @@ public class Game {
         }else if (input == 9){
             MyObject myObject = alex.getBackpack().inventory();
             if (myObject != null) {
-                garden.getPlaceObjects()[garden.getCount()] = myObject;
-                System.out.println(garden.getPlaceObjects()[garden.getCount()].getName());
-                garden.setCount(garden.getCount() - 1);
+                garden.droppItem(myObject);
             }
             garden();
         }else{

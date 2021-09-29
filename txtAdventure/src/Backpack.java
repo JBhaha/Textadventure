@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Backpack {
     //Declaring Attributes for the backpacks...
     static Scanner scanner;
-    private static MyObject returnMyObject;//This Object is vor the method inventory() do not touch! xD
+    private static MyObject returnMyObject;//This Object is f   or the method inventory() do not touch! xD
     private final int space;
     private static int used = 0;
     private static MyObject[] inventory;

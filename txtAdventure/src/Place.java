@@ -6,16 +6,18 @@ import java.util.Scanner;
 
 public class Place {
     static Scanner scanner;
+    private String text;
     private String name;
     private int maxSpace;
     private int count;
     private MyObject[] placeObjects;
 
-    public Place(int maxSpace, String name) {
+    public Place(int maxSpace, String name, String text) {
         this.maxSpace = maxSpace;
         this.name = name;
         count = 0;
         placeObjects = new MyObject[maxSpace];
+        this.text = text;
     }
 
     public void addObjectsToPlace(MyObject theObject) {
@@ -30,6 +32,14 @@ public class Place {
                 System.out.println("- " + placeObjects[i].getName());
             }
         }
+    }
+    public void droppItem(MyObject myObject){
+        getPlaceObjects()[getCount()] = myObject;
+        count++;
+    }
+
+    public void showPlace(){
+        System.out.println(text);
     }
 
     public int getMaxSpace() {
