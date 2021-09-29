@@ -22,13 +22,13 @@ public class Game {
     private Place garden = new Place(5, "garden", gardenText);
 
     //attributes for the adventurer
-    Adventurer alex = new Adventurer("Alex", 40, 50, 1);
+    Adventurer adventurer = new Adventurer("Alex", 40, 50, 1);
     Backpack defaultBackpack = new Backpack(20);
 
     //Constructor
     public Game(){
         scanner = new Scanner(System.in);
-        alex.setBackpack(defaultBackpack);
+        adventurer.setBackpack(defaultBackpack);
 
         //objects which are in the house at the beginning
         house.addObjectsToPlace(rope);
@@ -61,12 +61,12 @@ public class Game {
                 if (input == i){
                     wantsObject(house.getPlaceObjects(), house.getCount(), house.getMaxSpace(), input);
                     house.setCount(house.getCount() - 1);
-                    alex.getBackpack().showInventory();
+                    adventurer.getBackpack().showInventory();
                     house();
                 }
             }
         }else if (input == 9){
-            MyObject myObject = alex.getBackpack().inventory();
+            MyObject myObject = adventurer.getBackpack().inventory();
             if (myObject != null) {
                 house.droppItem(myObject);
             }
@@ -92,13 +92,13 @@ public class Game {
             for (int i = 1; i < garden.getCount() + 1; i++) {
                 if (input == i){
                     wantsObject(garden.getPlaceObjects(), garden.getCount(), garden.getMaxSpace(), input);
-                    alex.getBackpack().showInventory();
+                    adventurer.getBackpack().showInventory();
                     garden.setCount(garden.getCount() - 1);
                     garden();
                 }
             }
         }else if (input == 9){
-            MyObject myObject = alex.getBackpack().inventory();
+            MyObject myObject = adventurer.getBackpack().inventory();
             if (myObject != null) {
                 garden.droppItem(myObject);
             }
@@ -113,7 +113,7 @@ public class Game {
 
     //path in front of the garden
     public void path(){
-        System.out.println("You're walking on the path. Suddently the path has a dead end.\n" +
+        System.out.println("You're walking on the path. Suddenly, the path has a dead end.\n" +
                 "Behind you, there's the path back to the garden.");
     }
 
@@ -130,11 +130,11 @@ public class Game {
         maxSpace++;
         for (int i = 1; i < maxSpace; i++) {
             if (input == i){
-                alex.getBackpack().fillBackpack(myObjects[i-1]);
+                adventurer.getBackpack().fillBackpack(myObjects[i-1]);
                 help = emptyRoom(myObjects[i-1], myObjects, space);
                 space--;
                 if (space >= 0) System.arraycopy(help, 0, myObjects, 0, space);
-                alex.getBackpack().showInventory();
+                adventurer.getBackpack().showInventory();
             }
         }
     }
