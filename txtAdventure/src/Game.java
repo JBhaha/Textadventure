@@ -23,7 +23,8 @@ public class Game {
     private final Place garden = new Place(5, "garden", gardenText);
 
     //attributes for the path
-    private final String pathText = "Dead end";
+    private final String pathText = "You're walking on the path. Suddenly, the path has a dead end.\n" +
+            "Behind you, there's the path back to the garden.";
     private final Place path = new Place(5, "path", pathText);
 
 
@@ -92,10 +93,12 @@ public class Game {
         int input = printOptions(1,counter,garden);
         if (input == 1){
             house();
-        }else if (input > 1 && input < 9){
-            for (int i = 2; i < garden.getCount() + 2; i++) {
+        }else if(input == 2){
+            path();
+        }else if (input > 2 && input < 9){
+            for (int i = 3; i < garden.getCount() + 3; i++) {
                 if (input == i){
-                    wantsObject(garden.getPlaceObjects(), garden.getCount(), garden.getMaxSpace(), input-1);
+                    wantsObject(garden.getPlaceObjects(), garden.getCount(), garden.getMaxSpace(), input-2);
                     adventurer.getBackpack().showInventory();
                     garden.setCount(garden.getCount() - 1);
                     garden();
@@ -117,8 +120,7 @@ public class Game {
 
     //path in front of the garden
     public void path(){
-        System.out.println("You're walking on the path. Suddenly, the path has a dead end.\n" +
-                "Behind you, there's the path back to the garden.");
+        path.showPlace();
     }
 
 
@@ -166,7 +168,7 @@ public class Game {
     //Method for printing out the places in front and in the back
     private int printOptions(int index, int counter, Place place){
         if (index != 0){
-            if (index > 3){
+            if (index < 2){
                 System.out.println("Option " + counter + ": " + places[index-1].getName());
                 counter++;
                 System.out.println("Option " + counter + ": " + places[index+1].getName());
