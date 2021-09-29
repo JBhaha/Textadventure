@@ -38,8 +38,23 @@ public class Place {
         count++;
     }
 
+    //show the text for the place
     public void showPlace(){
         System.out.println(text);
+        System.out.println("Please select a number:");
+    }
+
+    //show the object which ar in the place
+    public int hereIs(int counter){
+        for (int i = counter; i < count + counter; i++) {
+            System.out.println("Option " + i + ": Take " + placeObjects[i-counter].getName());
+        }
+        System.out.println("Opiton 9: Inventory");
+        int input = scanner.nextInt();
+
+        //TODO: Überprüfung der eingabe
+
+        return input;
     }
 
     public int getMaxSpace() {

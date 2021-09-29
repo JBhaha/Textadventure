@@ -53,7 +53,7 @@ public class Game {
         System.out.println("Please select a number: ");
         System.out.println("Option " + counter + ": Go through the door.");
         counter++;
-        int input = hereIs(house.getCount(), house.getPlaceObjects(), counter);
+        int input = house.hereIs(counter);
         if (input == 0){
             garden();
         }else if (input > 0 && input < 9){
@@ -82,10 +82,10 @@ public class Game {
     public void garden(){
         garden.showPlace();
         int counter = 0;
-        System.out.println("Please select a number:");
         System.out.println("Option " + counter + ": Go through the door");
         counter++;
-        int input = hereIs(garden.getCount(), garden.getPlaceObjects(), counter);
+        int input = garden.hereIs(counter);
+
         if (input == 0){
             house();
         }else if (input > 0 && input < 9){
@@ -117,18 +117,6 @@ public class Game {
                 "Behind you, there's the path back to the garden.");
     }
 
-    //Method for the Objects which are in the place
-    public int hereIs(int placeSpace, MyObject[] placeMyObjects, int count){
-        for (int j = count; j < placeSpace + count; j++) {
-            System.out.println("Option " + j + ": Take " + placeMyObjects[j-count].getName());
-        }
-        System.out.println("Opiton 9: Inventory");
-        int input = scanner.nextInt();
-
-        //TODO: Überprüfung der eingabe
-
-        return input;
-    }
 
     //Method for errors because of the user
     public void error(){
