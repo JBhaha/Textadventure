@@ -4,6 +4,7 @@ import java.util.Scanner;
  **/
 public class Game {
     static Scanner scanner;
+    private final Place[] places = new Place[3];
 
     //Make Objects
     MyObject rope = new MyObject("rope");
@@ -12,14 +13,19 @@ public class Game {
     MyObject shovel = new MyObject("shovel");
 
     //attributes for the house
-    private String houseText = "You're standing in a dark room. You can't remember how you got here.\n" +
+    private final String houseText = "You're standing in a dark room. You can't remember how you got here.\n" +
             "You stand up. There's a door at the end of the room.";
-    private Place house = new Place(5, "house", houseText);
+    private final Place house = new Place(5, "house", houseText);
 
     //attributes for the garden
-    private String gardenText = "You're standing in the garden in front of the house where you woke up.\n" +
+    private final String gardenText = "You're standing in the garden in front of the house where you woke up.\n" +
             "Theres a door into the house and a small path into the forest.";
-    private Place garden = new Place(5, "garden", gardenText);
+    private final Place garden = new Place(5, "garden", gardenText);
+
+    //attributes for the path
+    private final String pathText = "Dead end";
+    private final Place path = new Place(5, "path", pathText);
+
 
     //attributes for the adventurer
     Adventurer adventurer = new Adventurer("Alex", 40, 50, 1);
@@ -37,6 +43,11 @@ public class Game {
 
         //objects which are in the garden at the beginning
         garden.addObjectsToPlace(shovel);
+
+        //put places in array
+        places[0] = house;
+        places[1] = garden;
+        places[2] = path;
     }   
 
     //Start method of the Textadventure!
@@ -49,17 +60,14 @@ public class Game {
     public void house() {
         house.showPlace();
         house.printObjects();
-        int counter = 0;
-        System.out.println("Please select a number: ");
-        System.out.println("Option " + counter + ": Go through the door.");
-        counter++;
-        int input = house.hereIs(counter);
-        if (input == 0){
+        int counter = 1;
+        int input = printOptions(0, counter, house);
+        if (input == 1){
             garden();
-        }else if (input > 0 && input < 9){
-            for (int i = 1; i < house.getCount() + 1; i++) {
+        }else if (input > 1 && input < 9){
+            for (int i = 2; i < house.getCount() + 2; i++) {
                 if (input == i){
-                    wantsObject(house.getPlaceObjects(), house.getCount(), house.getMaxSpace(), input);
+                    wantsObject(house.getPlaceObjects(), house.getCount(), house.getMaxSpace(), input-1);
                     house.setCount(house.getCount() - 1);
                     adventurer.getBackpack().showInventory();
                     house();
@@ -81,17 +89,14 @@ public class Game {
     //outside starting house
     public void garden(){
         garden.showPlace();
-        int counter = 0;
-        System.out.println("Option " + counter + ": Go through the door");
-        counter++;
-        int input = garden.hereIs(counter);
-
-        if (input == 0){
+        int counter = 1;
+        int input = printOptions(1,counter,garden);
+        if (input == 1){
             house();
-        }else if (input > 0 && input < 9){
-            for (int i = 1; i < garden.getCount() + 1; i++) {
+        }else if (input > 1 && input < 9){
+            for (int i = 2; i < garden.getCount() + 2; i++) {
                 if (input == i){
-                    wantsObject(garden.getPlaceObjects(), garden.getCount(), garden.getMaxSpace(), input);
+                    wantsObject(garden.getPlaceObjects(), garden.getCount(), garden.getMaxSpace(), input-1);
                     adventurer.getBackpack().showInventory();
                     garden.setCount(garden.getCount() - 1);
                     garden();
@@ -155,10 +160,33 @@ public class Game {
             placeMyObjects[j] = null;
         }
         placeSpace--;
-        for (int j = 0; j < placeSpace; j++) {
-            placeMyObjects[j] = help[j];
-        }
+        if (placeSpace >= 0) System.arraycopy(help, 0, placeMyObjects, 0, placeSpace);
         return placeMyObjects;
+    }
+
+
+    //Method for printing out the places in front and in the back
+    private int printOptions(int index, int counter, Place place){
+        if (index != 0){
+            if (index > 3){
+                System.out.println("Option " + counter + ": " + places[index-1].getName());
+                counter++;
+                System.out.println("Option " + counter + ": " + places[index+1].getName());
+                counter++;
+                int input = place.hereIs(counter);
+                return input;
+            }else{
+                System.out.println("Option " + counter + ": " + places[index-1].getName());
+                counter++;
+                int input = place.hereIs(counter);
+                return input;
+            }
+        }else{
+            System.out.println("Option " + counter + ": " + places[index+1].getName());
+            counter++;
+            int input = place.hereIs(counter);
+            return input;
+        }
     }
 
 }

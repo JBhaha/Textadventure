@@ -4,6 +4,7 @@
  **/
 
 public class Place {
+    //attributes for the class
     public Input inputReader = new Input();
     private String text;
     private String name;
@@ -11,6 +12,7 @@ public class Place {
     private int count;
     private MyObject[] placeObjects;
 
+    //Constructor
     public Place(int maxSpace, String name, String text) {
         this.maxSpace = maxSpace;
         this.name = name;
@@ -24,6 +26,7 @@ public class Place {
         count++;
     }
 
+    //prints out the objects in the place
     public void printObjects(){
         if (getCount() >= 0) {
             System.out.println("On the Desk is:");
@@ -43,7 +46,7 @@ public class Place {
         System.out.println("Please select a number:");
     }
 
-    //show the object which ar in the place
+    //show the object which are in the place
     public int hereIs(int counter){
         for (int i = counter; i < count + counter; i++) {
             System.out.println("Option " + i + ": Take " + placeObjects[i-counter].getName());

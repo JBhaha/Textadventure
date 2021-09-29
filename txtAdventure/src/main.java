@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Small textadventure
  *
@@ -9,10 +7,8 @@ import java.util.Scanner;
  */
 
 public class main {
-    static Scanner scanner;
 
     public main(){
-        scanner = new Scanner(System.in);
     }
 
     //main method
