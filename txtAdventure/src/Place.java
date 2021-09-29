@@ -1,11 +1,10 @@
-import java.util.Scanner;
 
 /**
  * Class for the places
  **/
 
 public class Place {
-    static Scanner scanner;
+    public Input inputReader = new Input();
     private String text;
     private String name;
     private int maxSpace;
@@ -50,10 +49,7 @@ public class Place {
             System.out.println("Option " + i + ": Take " + placeObjects[i-counter].getName());
         }
         System.out.println("Opiton 9: Inventory");
-        int input = scanner.nextInt();
-
-        //TODO: Überprüfung der eingabe
-
+        int input = inputReader.readInt();
         return input;
     }
 
