@@ -44,6 +44,7 @@ public class Place {
     public void showPlace(){
         System.out.println(text);
         System.out.println("Please select a number:");
+        printObjects();
     }
 
     //show the object which are in the place
@@ -67,7 +68,6 @@ public class Place {
     public int getCount() {
         return count;
     }
-
     public void setCount(int count) {
         this.count = count;
     }

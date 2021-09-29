@@ -59,7 +59,6 @@ public class Game {
     //Starting House
     public void house() {
         house.showPlace();
-        house.printObjects();
         int counter = 1;
         int input = printOptions(0, counter, house);
         if (input == 1){
@@ -139,7 +138,6 @@ public class Game {
                 help = emptyRoom(myObjects[i-1], myObjects, space);
                 space--;
                 if (space >= 0) System.arraycopy(help, 0, myObjects, 0, space);
-                adventurer.getBackpack().showInventory();
             }
         }
     }
