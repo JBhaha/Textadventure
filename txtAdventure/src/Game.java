@@ -1,6 +1,6 @@
 import java.util.Scanner;
 /**
- * Class for places
+ * Game logic
  **/
 public class Game {
     static Scanner scanner;
@@ -54,6 +54,7 @@ public class Game {
     //Start method of the Textadventure!
     public void start(){
         System.out.println("Welcome to the Textadventure!\nWe hope you enjoy it. Let's get started!");
+        System.out.println("-----------------------------------------------------------------------");
         house();
     }
 
@@ -76,14 +77,13 @@ public class Game {
         }else if (input == 9){
             MyObject myObject = adventurer.getBackpack().inventory();
             if (myObject != null) {
-                house.droppItem(myObject);
+                house.dropItem(myObject);
             }
             house();
         }else{
             error();
             house();
         }
-
     }
 
     //outside starting house
@@ -107,7 +107,7 @@ public class Game {
         }else if (input == 9){
             MyObject myObject = adventurer.getBackpack().inventory();
             if (myObject != null) {
-                garden.droppItem(myObject);
+                garden.dropItem(myObject);
             }
             garden();
         }else{
@@ -167,6 +167,8 @@ public class Game {
 
     //Method for printing out the places in front and in the back
     private int printOptions(int index, int counter, Place place){
+        System.out.println();
+        System.out.println("Please select a number:");
         if (index != 0){
             if (index < 2){
                 System.out.println("Option " + counter + ": " + places[index-1].getName());

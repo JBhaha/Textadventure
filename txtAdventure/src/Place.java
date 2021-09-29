@@ -35,7 +35,7 @@ public class Place {
             }
         }
     }
-    public void droppItem(MyObject myObject){
+    public void dropItem(MyObject myObject){
         getPlaceObjects()[getCount()] = myObject;
         count++;
     }
@@ -43,7 +43,8 @@ public class Place {
     //show the text for the place
     public void showPlace(){
         System.out.println(text);
-        System.out.println("Please select a number:");
+        System.out.println();
+
         printObjects();
     }
 
