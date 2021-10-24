@@ -60,10 +60,11 @@ public class Backpack {
 
     //Method for printing inventory out
     public void showInventory(){
-        System.out.println("You have: ");
+        System.out.println("You have:");
         for (int i = 0; i < used; i++) {
-            System.out.println("- " +  inventory[i].getName());
+            System.out.println("- " + inventory[i].getName());
         }
+        System.out.println("\n");
     }
 
 
