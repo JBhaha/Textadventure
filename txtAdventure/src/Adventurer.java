@@ -16,7 +16,6 @@ public class Adventurer {
 
 
     //Constructor
-
     public Adventurer(String name, double hp, double maxhp, double attackdmg) {
         this.name = name;
         this.maxhp = maxhp;
@@ -26,9 +25,40 @@ public class Adventurer {
         this.level = level;
     }
 
+    // Methods
+
+    // this Method adds exp
+    public void addexp(){
+        if (experience == 100){
+            level++;
+            experience = 0;
+        }
+    }
+    // this Method removes exp
+    public void removeexp(){
+        if (experience == 100){
+            level--;
+            experience = 0;
+        }
+    }
+
+    // this Method adds life points
+    public void addhealth(){
+        if (hp == maxhp)
+            System.out.println(hp);
+        else {
+            hp = hp + 15;
+            }
+        }
+
+
+        // Method for attacking
+    public void attack(){
+            hp = hp - attackdmg;
+        System.out.println(hp);
+    }
 
     //Getters and Setters
-
 
     public String getName() {
         return name;
@@ -85,39 +115,6 @@ public class Adventurer {
     public void setMaxhp(double maxhp) {
         this.maxhp = maxhp;
     }
-    // Methods
-
-    // this Method adds exp
-    public void addexp(){
-        if (experience == 100){
-            level++;
-            experience = 0;
-        }
-    }
-    // this Method removes exp
-    public void removeexp(){
-        if (experience == 100){
-            level--;
-            experience = 0;
-        }
-    }
-
-    // this Method adds life points
-    public void addhealth(){
-        if (hp == maxhp)
-            System.out.println(hp);
-        else {
-            hp = hp + 15;
-            }
-        }
-
-
-        // Method for attacking
-    public void attack(){
-            hp = hp - attackdmg;
-        System.out.println(hp);
-    }
-
 
 }
 

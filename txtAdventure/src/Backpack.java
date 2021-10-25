@@ -1,18 +1,16 @@
-import java.util.Scanner;
 /**
  * Class for backpacks (maybe selectable)
  **/
 public class Backpack {
     //Declaring Attributes for the backpacks...
-    static Scanner scanner;
-    private static MyObject returnMyObject;//This Object is vor the method inventory() do not touch! xD
+    static Input inputReader = new Input();
+    private static MyObject returnMyObject;//This Object is f   or the method inventory() do not touch! xD
     private final int space;
     private static int used = 0;
     private static MyObject[] inventory;
 
     //Constructor
     public Backpack(int space){
-        scanner = new Scanner(System.in);
         this.space = space;
         inventory = new MyObject[space];
     }
@@ -25,12 +23,12 @@ public class Backpack {
 
     //Method for the options in your Inventory
     public MyObject inventory(){
-        System.out.println("Bitte wähle Option:");
+        System.out.println("Choose Option");
         for (int i = 1; i < used + 1; i++) {
             System.out.println(i +": Drop " +  inventory[i-1].getName());
         }
         System.out.println("Press any number to close inventory.");
-        int input = scanner.nextInt();
+        int input = inputReader.readInt();
         for (int j = 0; j < used; j++) {
             if (input == j+1){
                 returnMyObject = inventory[j];
@@ -62,10 +60,11 @@ public class Backpack {
 
     //Method for printing inventory out
     public void showInventory(){
-        System.out.println("You have: ");
+        System.out.println("You have:");
         for (int i = 0; i < used; i++) {
-            System.out.println("- " +  inventory[i].getName());
+            System.out.println("- " + inventory[i].getName());
         }
+        System.out.println("\n");
     }
 
 
