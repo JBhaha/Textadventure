@@ -39,7 +39,7 @@ public class Place {
 
     //prints out the objects in the place
     public void printObjects(){
-        if (getCount() >= 0) {
+        if (getCount() > 0) {
             System.out.println("In this place is:");
             for (int i = 0; i < getCount(); i++) {
                 System.out.println("- " + placeObjects[i].getName());
@@ -56,7 +56,6 @@ public class Place {
     //show the text for the place
     public void showPlace(){
         System.out.println(text);
-        System.out.println("Please select a number:");
         printObjects();
     }
 
@@ -77,7 +76,7 @@ public class Place {
     //Method for the selection by the user
     private void selection(int index, int input, Place[] places, Adventurer adventurer, int counter){
         if (index != 0){
-            if (index < 2) {
+            if (index < 3) {
                 if (input == 1) {
                     index--;
 
@@ -131,16 +130,12 @@ public class Place {
         }
     }
 
-    //Fill the Backpack with wanted Object
-    public void fillBackpack(){
-        count++;
-
-    }
 
     //Show options to do in the place
     public int showOptions(int index, int counter, Place[] places){
+        System.out.println("Please select a number:");
         if (index != 0){
-            if (index < 2){
+            if (index < 3){
                 System.out.println("Option " + counter + ": " + places[index-1].getName());
                 counter++;
                 System.out.println("Option " + counter + ": " + places[index+1].getName());
@@ -206,4 +201,5 @@ public class Place {
     public void setCounter(int counter) {
         this.counter = counter;
     }
+
 }
