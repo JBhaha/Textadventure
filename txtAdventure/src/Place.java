@@ -4,6 +4,7 @@ import org.apache.commons.lang3.ArrayUtils;
  **/
 
 public class Place {
+
     //attributes for the class
     public Input inputReader = new Input();
     private String text;
@@ -12,7 +13,9 @@ public class Place {
     private int count;
     private int counter = 1;
     private MyObject[] placeObjects;
-    //private int index = 0;
+    private Place[] accessiblePlaces = new Place[4];
+    private int index = 0;
+
 
     //Constructor
     public Place(int maxSpace, String name, String text) {
@@ -24,11 +27,11 @@ public class Place {
     }
 
     //Logic for the place and
-    public void placeLogic(Place[] places, int index, Adventurer adventurer){
+    public void placeLogic(int index, Adventurer adventurer){
         showPlace();
         setCounter(1);
-        int input = showOptions(index, counter, places);
-        selection(index, input, places, adventurer, counter);
+        int input = showOptions(index, counter);
+        selection(index, input, adventurer, counter);
     }
 
     //Adds a dropped Object to the array of the place
@@ -53,7 +56,7 @@ public class Place {
         count++;
     }
 
-    //show the text for the place
+    //show the text for the place & opens the method for printing the objects
     public void showPlace(){
         System.out.println(text);
         printObjects();
@@ -74,86 +77,46 @@ public class Place {
 
 
     //Method for the selection by the user
-    private void selection(int index, int input, Place[] places, Adventurer adventurer, int counter){
-        if (index != 0){
-            if (index < 3) {
-                if (input == 1) {
-                    index--;
-
-                }
-                else if (input == 2) {
-                    index++;
-
-                }
-                else{
-                    objectSelection(input, 3, adventurer, counter);
-                }
-            }
-            else{
-                if (input == 1){
-                    index--;
-                }else{
-                    objectSelection(input, 3, adventurer, counter);
-                }
-            }
+    private void selection(int indexx, int input, Adventurer adventurer, int counter){
+        if (input >= index + 1){
+            objectSelection(input, adventurer, indexx);
+        }else if (input > 0){
+            accessiblePlaces[input-1].placeLogic(indexx, adventurer);
+        }else{
+            System.out.println("Invalid");
+            placeLogic(indexx, adventurer);
         }
-        else{
-            if (input == 1){
-                index++;
-            }else{
-                objectSelection(input, 2, adventurer, counter);
-            }
-        }
-        places[index].placeLogic(places, index, adventurer);
     }
 
     //Method to avoid redundance
-    public void objectSelection(int input, int num, Adventurer adventurer, int counter){
-        if (input < counter) {
-            for (int i = num; i < count + num; i++) {
-                if (input == i) {
-                    adventurer.getBackpack().fillBackpack(placeObjects[input - num]);
-                    placeObjects = ArrayUtils.remove(placeObjects, input - num);
-                    count--;
-                    adventurer.getBackpack().showInventory();
-                }
-            }
+    public void objectSelection(int input, Adventurer adventurer, int indexx){
+        if (input > index && input <= counter) {
+            adventurer.getBackpack().fillBackpack(placeObjects[input - index - 1]);
+            placeObjects = ArrayUtils.remove(placeObjects, input - index - 1);
+            count--; //lowers the counter for the array: placeObjects
+            adventurer.getBackpack().showInventory();
         }
-        else if (input == 9){
+        else if(input == 9){
             MyObject myObj = adventurer.getBackpack().inventory();
             if (myObj != null) {
                 droppItem(myObj);
             }
         }
         else{
-            error();
+            System.out.println("Invalid");
         }
+        placeLogic(indexx, adventurer);
     }
 
 
     //Show options to do in the place
-    public int showOptions(int index, int counter, Place[] places){
-        System.out.println("Please select a number:");
-        if (index != 0){
-            if (index < 3){
-                System.out.println("Option " + counter + ": " + places[index-1].getName());
-                counter++;
-                System.out.println("Option " + counter + ": " + places[index+1].getName());
-                counter++;
-                int input = hereIs(counter);
-                return input;
-            }else{
-                System.out.println("Option " + counter + ": " + places[index-1].getName());
-                counter++;
-                int input = hereIs(counter);
-                return input;
-            }
-        }else{
-            System.out.println("Option " + counter + ": " + places[index+1].getName());
+    public int showOptions(int indexx, int counter){
+        for (int i = 0; i < index; i++) {
+            System.out.println("Option " + counter + ": " + accessiblePlaces[i].getName());
             counter++;
-            int input = hereIs(counter);
-            return input;
         }
+
+        return hereIs(counter);
     }
 
     //Method for errors because of the user
@@ -202,4 +165,8 @@ public class Place {
         this.counter = counter;
     }
 
+    public void addAccessiblePlaces(Place place){
+        accessiblePlaces[index] = place;
+        index++;
+    }
 }

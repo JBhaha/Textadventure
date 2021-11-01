@@ -4,7 +4,6 @@ import java.util.Scanner;
  **/
 public class Game {
     static Scanner scanner;
-    private final Place[] places = new Place[4];
 
     //Make Objects
     MyObject rope = new MyObject("rope");
@@ -26,7 +25,7 @@ public class Game {
     private final String pathText = "You're standing on the Path. At the end of the Path, there is a clearing.";
     private final Place path = new Place(5, "Path", pathText);
 
-    private final String clearingText = "Here is nothing to see :(";
+    private final String clearingText = "This is a clearing :D";
     private final Place clearing = new Place(5, "Clearing", clearingText);
     //attributes for the adventurer
     Adventurer adventurer = new Adventurer("Alex", 40, 50, 1);
@@ -45,17 +44,18 @@ public class Game {
         //objects which are in the garden at the beginning
         garden.addObjectsToPlace(shovel);
 
-        //put places in array
-        places[0] = house;
-        places[1] = garden;
-        places[2] = path;
-        places[3] = clearing;
+        house.addAccessiblePlaces(garden);
+        garden.addAccessiblePlaces(house);
+        garden.addAccessiblePlaces(path);
+        path.addAccessiblePlaces(garden);
+        path.addAccessiblePlaces(clearing);
+        clearing.addAccessiblePlaces(path);
     }   
 
     //Start method of the Textadventure!
     public void start(){
         System.out.println("Welcome to the Textadventure!\nWe hope you enjoy it. Let's get started!");
-        house.placeLogic(places, 0, adventurer);
+        house.placeLogic(0, adventurer);
     }
 
 }

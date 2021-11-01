@@ -8,8 +8,7 @@
 
 public class main {
 
-    public main(){
-    }
+    public main(){}
 
     //main method
     public static void main(String[] args) {
