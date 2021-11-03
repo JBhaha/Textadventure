@@ -24,19 +24,22 @@ public class Backpack {
     //Method for the options in your Inventory
     public MyObject inventory(){
         if (used == 0){
-            System.out.println("Your inventory is empty");
+            System.out.println("Your backpack is empty");
+            System.out.println("0: Close backpack");
         }else {
             System.out.println("Choose Option:");
+            System.out.println("0: Close backpack");
             for (int i = 1; i < used + 1; i++) {
                 System.out.println(i + ": Drop " + inventory[i - 1].getName());
             }
         }
-        System.out.println("Press another number to close inventory.");
         int input = inputReader.readInt();
         for (int j = 0; j < used; j++) {
             if (input == j+1){
                 returnMyObject = inventory[j];
                 emptyBackpack(inventory[j]);
+            }else if (input == 0){
+                return null;
             }
         }
         return returnMyObject;
@@ -68,7 +71,6 @@ public class Backpack {
         for (int i = 0; i < used; i++) {
             System.out.println("- " + inventory[i].getName());
         }
-        System.out.println("\n");
     }
 
 }

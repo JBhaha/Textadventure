@@ -55,7 +55,7 @@ public class Game {
     //Start method of the Textadventure!
     public void start(){
         System.out.println("Welcome to the Textadventure!\nWe hope you enjoy it. Let's get started!");
-        house.placeLogic(0, adventurer);
+        house.placeLogic(adventurer);
     }
 
 }

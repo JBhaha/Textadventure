@@ -44,6 +44,4 @@ public class Input {
         boolean bool = scanner.nextBoolean();
         return bool;
     }
-
-
 }

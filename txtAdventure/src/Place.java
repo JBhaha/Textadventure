@@ -27,11 +27,11 @@ public class Place {
     }
 
     //Logic for the place and
-    public void placeLogic(int index, Adventurer adventurer){
+    public void placeLogic(Adventurer adventurer){
         showPlace();
         setCounter(1);
-        int input = showOptions(index, counter);
-        selection(index, input, adventurer, counter);
+        int input = showOptions(counter);
+        selection(input, adventurer, counter);
     }
 
     //Adds a dropped Object to the array of the place
@@ -69,48 +69,51 @@ public class Place {
             System.out.println("Option " + i + ": Take " + placeObjects[i-counter].getName());
             c++;
         }
-        setCounter(c);
-        System.out.println("Opiton 9: Inventory");
+        counter = c - 1;
+        setCounter(counter);
         int input = inputReader.readInt();
         return input;
     }
 
 
     //Method for the selection by the user
-    private void selection(int indexx, int input, Adventurer adventurer, int counter){
-        if (input >= index + 1){
-            objectSelection(input, adventurer, indexx);
-        }else if (input > 0){
-            accessiblePlaces[input-1].placeLogic(indexx, adventurer);
+    private void selection(int input, Adventurer adventurer, int counter){
+        if ((input >= index + 1 && input <= counter)|| input == 0){
+            objectSelection(input, adventurer);
+        }else if (input > 0 && input <= index){
+            accessiblePlaces[input-1].placeLogic(adventurer);
         }else{
             System.out.println("Invalid");
-            placeLogic(indexx, adventurer);
+            placeLogic(adventurer);
         }
     }
 
     //Method to avoid redundance
-    public void objectSelection(int input, Adventurer adventurer, int indexx){
+    public void objectSelection(int input, Adventurer adventurer){
         if (input > index && input <= counter) {
             adventurer.getBackpack().fillBackpack(placeObjects[input - index - 1]);
             placeObjects = ArrayUtils.remove(placeObjects, input - index - 1);
             count--; //lowers the counter for the array: placeObjects
             adventurer.getBackpack().showInventory();
         }
-        else if(input == 9){
+        else if(input == 0){
             MyObject myObj = adventurer.getBackpack().inventory();
             if (myObj != null) {
                 droppItem(myObj);
+            }else{
+                placeLogic(adventurer);
             }
         }
         else{
             System.out.println("Invalid");
         }
-        placeLogic(indexx, adventurer);
+        placeLogic(adventurer);
     }
 
 
     //Show options to do in the place
-    public int showOptions(int indexx, int counter){
+    public int showOptions(int counter){
+        System.out.println("Opiton 0: Backpack");
         for (int i = 0; i < index; i++) {
             System.out.println("Option " + counter + ": " + accessiblePlaces[i].getName());
             counter++;
