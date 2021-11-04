@@ -43,13 +43,18 @@ public class Game {
 
         //objects which are in the garden at the beginning
         garden.addObjectsToPlace(shovel);
-
         house.addAccessiblePlaces(garden);
         garden.addAccessiblePlaces(house);
         garden.addAccessiblePlaces(path);
         path.addAccessiblePlaces(garden);
         path.addAccessiblePlaces(clearing);
         clearing.addAccessiblePlaces(path);
+
+        //create creatures
+        Creature wizard = new Creature("Magicman", "Hello my friend. My name is Magicman! How can I help you?!?!");
+
+        //add creatures to place
+        clearing.addCreatures(wizard);
     }   
 
     //Start method of the Textadventure!

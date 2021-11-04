@@ -11,11 +11,12 @@ public class Place {
     private String name;
     private int maxSpace;
     private int count;
-    private int counter = 1;
+    private int optionCntr = 1;
     private MyObject[] placeObjects;
     private Place[] accessiblePlaces = new Place[4];
-    private int index = 0;
-
+    private int acsPlcsCntr = 0;
+    private Creature[] creatures;
+    private int creaturesCntr;
 
     //Constructor
     public Place(int maxSpace, String name, String text) {
@@ -24,14 +25,16 @@ public class Place {
         count = 0;
         placeObjects = new MyObject[maxSpace];
         this.text = text;
+        creatures = new Creature[5];
+        creaturesCntr = 0;
     }
 
     //Logic for the place and
     public void placeLogic(Adventurer adventurer){
         showPlace();
-        setCounter(1);
-        int input = showOptions(counter);
-        selection(input, adventurer, counter);
+        setOptionCntr(1);
+        int input = showOptions(optionCntr);
+        selection(input, adventurer, optionCntr);
     }
 
     //Adds a dropped Object to the array of the place
@@ -70,17 +73,33 @@ public class Place {
             c++;
         }
         counter = c - 1;
-        setCounter(counter);
+        setOptionCntr(counter);
+        if (creaturesCntr != 0){
+            creaturesHere();
+        }
         int input = inputReader.readInt();
         return input;
+    }
+
+    //Method for showing the options to talking to the creatures
+    public void creaturesHere(){
+        for (int i = 0; i < creaturesCntr; i++) {
+            optionCntr++;
+            System.out.println("Option " + optionCntr + ": " + "talk to " + creatures[i].getName());
+        }
     }
 
 
     //Method for the selection by the user
     private void selection(int input, Adventurer adventurer, int counter){
-        if ((input >= index + 1 && input <= counter)|| input == 0){
-            objectSelection(input, adventurer);
-        }else if (input > 0 && input <= index){
+        if ((input >= acsPlcsCntr + 1 && input <= counter)|| input == 0){
+            if (creatures[0] == null || input <= counter - creaturesCntr) {
+                objectSelection(input, adventurer);
+            }else{
+                System.out.println(creatures[input - (counter - creaturesCntr) - 1].getGreeting());
+                //TODO: Implement method for talking to the creature IN THE CLASS CREATURE!!!!
+            }
+        }else if (input > 0 && input <= acsPlcsCntr){
             accessiblePlaces[input-1].placeLogic(adventurer);
         }else{
             System.out.println("Invalid");
@@ -90,9 +109,9 @@ public class Place {
 
     //Method to avoid redundance
     public void objectSelection(int input, Adventurer adventurer){
-        if (input > index && input <= counter) {
-            adventurer.getBackpack().fillBackpack(placeObjects[input - index - 1]);
-            placeObjects = ArrayUtils.remove(placeObjects, input - index - 1);
+        if (input > acsPlcsCntr && input <= optionCntr) {
+            adventurer.getBackpack().fillBackpack(placeObjects[input - acsPlcsCntr - 1]);
+            placeObjects = ArrayUtils.remove(placeObjects, input - acsPlcsCntr - 1);
             count--; //lowers the counter for the array: placeObjects
             adventurer.getBackpack().showInventory();
         }
@@ -114,7 +133,7 @@ public class Place {
     //Show options to do in the place
     public int showOptions(int counter){
         System.out.println("Opiton 0: Backpack");
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < acsPlcsCntr; i++) {
             System.out.println("Option " + counter + ": " + accessiblePlaces[i].getName());
             counter++;
         }
@@ -160,16 +179,23 @@ public class Place {
         this.placeObjects = placeObjects;
     }
 
-    public int getCounter() {
-        return counter;
+    public int getOptionCntr() {
+        return optionCntr;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
+    public void setOptionCntr(int optionCntr) {
+        this.optionCntr = optionCntr;
     }
 
     public void addAccessiblePlaces(Place place){
-        accessiblePlaces[index] = place;
-        index++;
+        accessiblePlaces[acsPlcsCntr] = place;
+        acsPlcsCntr++;
+    }
+
+    public void addCreatures(Creature creature) {
+        if (creaturesCntr < 5){
+            creatures[creaturesCntr] = creature;
+            creaturesCntr++;
+        }
     }
 }
