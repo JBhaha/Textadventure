@@ -37,4 +37,5 @@ public class Creature {
     public String getGreeting() {
         return greeting;
     }
+    
 }
