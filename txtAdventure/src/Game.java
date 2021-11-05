@@ -50,8 +50,22 @@ public class Game {
         path.addAccessiblePlaces(clearing);
         clearing.addAccessiblePlaces(path);
 
+        //Creatures Arrays
+        String[] wizardOptions = new String[3];
+        String[] wizardAnswers = new String[3];
+
+        //fill creature options array
+        wizardOptions[0] = "Hello, I'm Alex";
+        wizardOptions[1] = "What are you doing here?";
+        wizardOptions[2] = "Bye!";
+
+        //fill creature answers array
+        wizardAnswers[0] = "Hello! heheheheh I'm Magicman who are you?";
+        wizardAnswers[1] = "Im getting some mushrooms heheheheh";
+        wizardAnswers[2] = "Bye bye";
+
         //create creatures
-        Creature wizard = new Creature("Magicman", "Hello my friend. My name is Magicman! How can I help you?!?!");
+        Creature wizard = new Creature("Magicman", "Hello my friend. My name is Magicman! How can I help you?!?!", wizardOptions, wizardAnswers);
 
         //add creatures to place
         clearing.addCreatures(wizard);

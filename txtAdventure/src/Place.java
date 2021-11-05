@@ -96,8 +96,8 @@ public class Place {
             if (creatures[0] == null || input <= counter - creaturesCntr) {
                 objectSelection(input, adventurer);
             }else{
-                System.out.println(creatures[input - (counter - creaturesCntr) - 1].getGreeting());
-                //TODO: Implement method for talking to the creature IN THE CLASS CREATURE!!!!
+                creatures[input - (counter - creaturesCntr) - 1].talkTo();
+                placeLogic(adventurer);
             }
         }else if (input > 0 && input <= acsPlcsCntr){
             accessiblePlaces[input-1].placeLogic(adventurer);
