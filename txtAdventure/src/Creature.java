@@ -20,7 +20,6 @@ public class Creature {
         for (int i = 0; i < 3; i++) {
             System.out.println("Option " + (i+1) +": " + options[i]);
         }
-        System.out.println("Choose option:");
         int input = inputReader.readInt();
         System.out.println(optionAnswers[input-1]);
 

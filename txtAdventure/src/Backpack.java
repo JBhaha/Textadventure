@@ -25,9 +25,10 @@ public class Backpack {
     public MyObject inventory(){
         if (used == 0){
             System.out.println("Your backpack is empty");
-            System.out.println("0: Close backpack");
+            return null;
         }else {
-            System.out.println("Choose Option:");
+            System.out.println("Inventory:");
+            System.out.println("-----------------");
             System.out.println("0: Close backpack");
             for (int i = 1; i < used + 1; i++) {
                 System.out.println(i + ": Drop " + inventory[i - 1].getName());

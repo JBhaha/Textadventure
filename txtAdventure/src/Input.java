@@ -15,10 +15,12 @@ public class Input {
 
     public int readInt() {
         System.out.println("Choose option:");
+        System.out.print("> ");
         while (!scanner.hasNextInt()) {
             scanner.next();
         }
         int input = scanner.nextInt();
+        System.out.print("\n");
         return input;
     }
 

@@ -99,7 +99,6 @@ public class Place {
             adventurer.getBackpack().fillBackpack(placeObjects[input - acsPlcsCntr - 1]);
             placeObjects = ArrayUtils.remove(placeObjects, input - acsPlcsCntr - 1);
             count--; //lowers the counter for the array: placeObjects
-            adventurer.getBackpack().showInventory();
         }
         else if(input == 0){
             MyObject myObj = adventurer.getBackpack().inventory();
