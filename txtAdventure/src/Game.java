@@ -33,6 +33,11 @@ public class Game {
 
     //Constructor
     public Game(){
+        Input input = new Input();
+        System.out.println("Welcome to the Textadventure!\nWe hope you enjoy it. Let's get started!");
+        System.out.print("What's you name?\n" +
+                "> ");
+        adventurer.setName(input.readString());
         scanner = new Scanner(System.in);
         adventurer.setBackpack(defaultBackpack);
 
@@ -55,7 +60,7 @@ public class Game {
         String[] wizardAnswers = new String[3];
 
         //fill creature options array
-        wizardOptions[0] = "Hello, I'm Alex";
+        wizardOptions[0] = "Hello, I'm " + adventurer.getName();
         wizardOptions[1] = "What are you doing here?";
         wizardOptions[2] = "Bye!";
 
@@ -73,7 +78,6 @@ public class Game {
 
     //Start method of the Textadventure!
     public void start(){
-        System.out.println("Welcome to the Textadventure!\nWe hope you enjoy it. Let's get started!");
         house.placeLogic(adventurer);
     }
 

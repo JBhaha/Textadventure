@@ -8,7 +8,7 @@ public class Input {
         scanner = new Scanner(System.in);
     }
 
-    public static String readString() {
+    public String readString() {
         String text = scanner.nextLine();
         return text;
     }
