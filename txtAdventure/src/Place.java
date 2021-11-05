@@ -31,7 +31,7 @@ public class Place {
 
     //Logic for the place and
     public void placeLogic(Adventurer adventurer){
-        showPlace();
+        System.out.println("\n" + text);
         setOptionCntr(1);
         int input = showOptions(optionCntr);
         selection(input, adventurer, optionCntr);
@@ -43,27 +43,12 @@ public class Place {
         count++;
     }
 
-    //prints out the objects in the place
-    public void printObjects(){
-        if (getCount() > 0) {
-            System.out.println("In this place is:");
-            for (int i = 0; i < getCount(); i++) {
-                System.out.println("- " + placeObjects[i].getName());
-            }
-        }
-    }
-
 
     public void droppItem(MyObject myObject){
         getPlaceObjects()[getCount()] = myObject;
         count++;
     }
 
-    //show the text for the place & opens the method for printing the objects
-    public void showPlace(){
-        System.out.println(text);
-        printObjects();
-    }
 
     //show the objects which are in the place
     public int hereIs(int counter){
@@ -96,13 +81,14 @@ public class Place {
             if (creatures[0] == null || input <= counter - creaturesCntr) {
                 objectSelection(input, adventurer);
             }else{
+                System.out.println(creatures[input - (counter - creaturesCntr) - 1].getGreeting());
                 creatures[input - (counter - creaturesCntr) - 1].talkTo();
                 placeLogic(adventurer);
             }
         }else if (input > 0 && input <= acsPlcsCntr){
             accessiblePlaces[input-1].placeLogic(adventurer);
         }else{
-            System.out.println("Invalid");
+            error();
             placeLogic(adventurer);
         }
     }
@@ -119,12 +105,10 @@ public class Place {
             MyObject myObj = adventurer.getBackpack().inventory();
             if (myObj != null) {
                 droppItem(myObj);
-            }else{
-                placeLogic(adventurer);
             }
         }
         else{
-            System.out.println("Invalid");
+            error();
         }
         placeLogic(adventurer);
     }
@@ -132,6 +116,7 @@ public class Place {
 
     //Show options to do in the place
     public int showOptions(int counter){
+        System.out.println("--------------------------------------------------------------------");
         System.out.println("Opiton 0: Backpack");
         for (int i = 0; i < acsPlcsCntr; i++) {
             System.out.println("Option " + counter + ": " + accessiblePlaces[i].getName());
@@ -147,40 +132,16 @@ public class Place {
     }
 
 
-    public int getMaxSpace(){
-        return maxSpace;
-
-    }
-
-    public void setMaxSpace(int maxSpace) {
-        this.maxSpace = maxSpace;
-    }
-
     public int getCount() {
         return count;
-    }
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public MyObject[] getPlaceObjects() {
         return placeObjects;
-    }
-
-    public void setPlaceObjects(MyObject[] placeObjects) {
-        this.placeObjects = placeObjects;
-    }
-
-    public int getOptionCntr() {
-        return optionCntr;
     }
 
     public void setOptionCntr(int optionCntr) {

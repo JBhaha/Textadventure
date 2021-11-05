@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Input {
     static Scanner scanner;
 
+    //Construcor
     public Input() {
         scanner = new Scanner(System.in);
     }
