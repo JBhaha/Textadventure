@@ -65,9 +65,9 @@ public class Game {
         wizardOptions[2] = "Bye!";
 
         //fill creature answers array
-        wizardAnswers[0] = "Hello! heheheheh I'm Magicman who are you?";
-        wizardAnswers[1] = "Im getting some mushrooms heheheheh";
-        wizardAnswers[2] = "Bye bye";
+        wizardAnswers[0] = "Hello! I'm the wizard, but everyone calls me MAGICMAN *heheh* and who are you?";
+        wizardAnswers[1] = "I'm getting some shrooms *heheheheh*";
+        wizardAnswers[2] = "Bye *hehehehe* bye";
 
         //create creatures
         Creature wizard = new Creature("Magicman", "Hello my friend. My name is Magicman! How can I help you?!?!", wizardOptions, wizardAnswers);
