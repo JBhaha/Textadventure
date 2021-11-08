@@ -25,7 +25,8 @@ public class Game {
     private final String pathText = "You're standing on the Path. At the end of the Path, there is a clearing.";
     private final Place path = new Place(5, "Path", pathText);
 
-    private final String clearingText = "This is a clearing :D";
+    private final String clearingText = "You get to the clearing. The warm sunshine is blinding you. \n" +
+            "As you're trying to glance at the sun, you notice a weird-looking man next to you.";
     private final Place clearing = new Place(5, "Clearing", clearingText);
     //attributes for the adventurer
     Adventurer adventurer = new Adventurer("Alex", 40, 50, 1);
@@ -38,7 +39,6 @@ public class Game {
         System.out.print("What's you name?\n" +
                 "> ");
         adventurer.setName(input.readString());
-        scanner = new Scanner(System.in);
         adventurer.setBackpack(defaultBackpack);
 
         //objects which are in the house at the beginning
