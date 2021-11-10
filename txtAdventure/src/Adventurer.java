@@ -14,7 +14,6 @@ public class Adventurer {
     private Backpack backpack;
 
 
-
     //Constructor
     public Adventurer(String name, double hp, double maxhp, double attackdmg) {
         this.name = name;
@@ -28,33 +27,34 @@ public class Adventurer {
     // Methods
 
     // this Method adds exp
-    public void addexp(){
-        if (experience == 100){
+    public void addexp() {
+        if (experience == 100) {
             level++;
             experience = 0;
         }
     }
+
     // this Method removes exp
-    public void removeexp(){
-        if (experience == 100){
+    public void removeexp() {
+        if (experience == 100) {
             level--;
             experience = 0;
         }
     }
 
     // this Method adds life points
-    public void addhealth(){
+    public void addhealth() {
         if (hp == maxhp)
             System.out.println(hp);
         else {
             hp = hp + 15;
-            }
         }
+    }
 
 
-        // Method for attacking
-    public void attack(){
-            hp = hp - attackdmg;
+    // Method for attacking
+    public void attack() {
+        hp = hp - attackdmg;
         System.out.println(hp);
     }
 

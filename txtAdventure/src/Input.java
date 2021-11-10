@@ -3,21 +3,24 @@ import java.util.Scanner;
 public class Input {
     static Scanner scanner;
 
+    //Construcor
     public Input() {
         scanner = new Scanner(System.in);
     }
 
-    public static String readString() {
+    public String readString() {
         String text = scanner.nextLine();
         return text;
     }
 
     public int readInt() {
         System.out.println("Choose option:");
+        System.out.print("> ");
         while (!scanner.hasNextInt()) {
             scanner.next();
         }
         int input = scanner.nextInt();
+        System.out.print("\n");
         return input;
     }
 
@@ -44,6 +47,4 @@ public class Input {
         boolean bool = scanner.nextBoolean();
         return bool;
     }
-
-
 }
