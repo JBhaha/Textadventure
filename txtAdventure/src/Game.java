@@ -54,7 +54,9 @@ public class Game {
     private final String dunesText = "Those are some huge dunes";
     private final Place dunes = new Place(0, "Dunes", dunesText);
 
-    //TODO: Add a place next to the dunes
+    //attributes for the cave
+    private final String caveText = "Rocks and diamonds! A cave.";
+    private final Place cave = new Place(0, "Cave", caveText);
 
     //attributes for the desert
     private final String desertText = "Sand everywhere! I guess we're in a desert!";
@@ -68,7 +70,11 @@ public class Game {
     private final String townText = "You've reached the town";
     private final Place town = new Place(0, "Town", townText);
 
-    //TODO: 4 more places between the desert and the town
+    //attributes for the tavern
+    private final String tavernText = "Wow, here are many drunk people!";
+    private final Place tavern = new Place(0, "Tavern", tavernText);
+
+    //TODO: 3 more places between the desert and the town (mirage)
 
     //Last places
 
@@ -105,30 +111,67 @@ public class Game {
         //objects which are in the garden at the beginning
         garden.addObjectsToPlace(shovel);
 
+        //accessible places from the house
         house.addAccessiblePlaces(garden);
 
+        //accessible places from the garden
         garden.addAccessiblePlaces(house);
         garden.addAccessiblePlaces(path);
 
+        //accessible places from the path
         path.addAccessiblePlaces(garden);
         path.addAccessiblePlaces(clearing);
 
+        //accessible places from the clearing
         clearing.addAccessiblePlaces(path);
         clearing.addAccessiblePlaces(branch);
 
+        //accessible places from the branch
         branch.addAccessiblePlaces(clearing);
         branch.addAccessiblePlaces(cabin);
         branch.addAccessiblePlaces(camp);
 
+        //accessible places from the cabin
         cabin.addAccessiblePlaces(branch);
 
+        //accessible places from the camp
         camp.addAccessiblePlaces(branch);
         camp.addAccessiblePlaces(lake);
 
+        //accessible places from the lake
         lake.addAccessiblePlaces(camp);
         lake.addAccessiblePlaces(river);
+        lake.addAccessiblePlaces(island);
 
+        //accessible places from the island
+        island.addAccessiblePlaces(lake);
+        island.addAccessiblePlaces(town);
+
+        //accessible places from the town
+        town.addAccessiblePlaces(island);
+        town.addAccessiblePlaces(tavern);
+
+        //accessible places from the tavern
+        tavern.addAccessiblePlaces(town);
+
+        //accessible places from the river
         river.addAccessiblePlaces(lake);
+        river.addAccessiblePlaces(dunes);
+        river.addAccessiblePlaces(cave);
+
+        //accessible places from the cave
+        cave.addAccessiblePlaces(river);
+        cave.addAccessiblePlaces(desert);
+
+        //accessible places from the dunes
+        dunes.addAccessiblePlaces(river);
+        dunes.addAccessiblePlaces(desert);
+
+        //accessible places from the desert
+        desert.addAccessiblePlaces(dunes);
+        desert.addAccessiblePlaces(cave);
+
+
 
         //Creatures Arrays
         String[] wizardOptions = new String[3];

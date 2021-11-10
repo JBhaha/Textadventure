@@ -115,7 +115,7 @@ public class Place {
 
     //Show options to do in the place
     public int showOptions(int counter){
-        System.out.println("--------------------------------------------------------------------");
+        System.out.println("-".repeat(69));
         System.out.println("Opiton 0: Backpack");
         for (int i = 0; i < acsPlcsCntr; i++) {
             System.out.println("Option " + counter + ": " + accessiblePlaces[i].getName());
