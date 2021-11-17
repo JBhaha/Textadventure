@@ -44,7 +44,7 @@ public class Place {
     }
 
 
-    public void droppItem(MyObject myObject){
+    public void dropItem(MyObject myObject){
         getPlaceObjects()[getCount()] = myObject;
         count++;
     }
@@ -103,7 +103,7 @@ public class Place {
         else if(input == 0){
             MyObject myObj = adventurer.getBackpack().inventory();
             if (myObj != null) {
-                droppItem(myObj);
+                dropItem(myObj);
             }
         }
         else{

@@ -192,7 +192,7 @@ public class Game {
         ghostladyOptiones[2] = "Grüezi";
 
         //fill wizard answers array
-        wizardAnswers[0] = "Hello! I'm the wizard, but everyone calls me MAGICMAN *heheh* and who are you?";
+        wizardAnswers[0] = "Hiiiiii";
         wizardAnswers[1] = "I'm just getting some shrooms *heheheheh*";
         wizardAnswers[2] = "Bye *hehehehe* bye";
 
@@ -202,7 +202,7 @@ public class Game {
         ghostladyAnswers[2] = "Grüezi";
 
         //create creatures
-        Creature wizard = new Creature("Magicman", "Hello my friend. My name is Magicman! How can I help you?!?!", wizardOptions, wizardAnswers);
+        Creature wizard = new Creature("Magicman", "Hello! I'm the wizard, but everyone calls me MAGICMAN *heheh* and who are you?", wizardOptions, wizardAnswers);
         Creature ghostlady = new Creature("Ghostlady", "Ich grüsse Sie.", ghostladyOptiones, ghostladyAnswers);
 
         //add creatures to place
