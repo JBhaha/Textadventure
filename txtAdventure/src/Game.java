@@ -173,25 +173,41 @@ public class Game {
 
 
 
-        //Creatures Arrays
+        //Wizard Arrays
         String[] wizardOptions = new String[3];
         String[] wizardAnswers = new String[3];
 
-        //fill creature options array
+        //Ghostlady Arrays
+        String[] ghostladyOptiones = new String[3];
+        String[] ghostladyAnswers = new String[3];
+
+        //fill wizard options array
         wizardOptions[0] = "Hello, I'm " + adventurer.getName();
         wizardOptions[1] = "What are you doing here?";
         wizardOptions[2] = "Bye!";
 
-        //fill creature answers array
+        //fill ghostlady options array
+        ghostladyOptiones[0] = "Grüezi";
+        ghostladyOptiones[1] = "Grüezi";
+        ghostladyOptiones[2] = "Grüezi";
+
+        //fill wizard answers array
         wizardAnswers[0] = "Hello! I'm the wizard, but everyone calls me MAGICMAN *heheh* and who are you?";
-        wizardAnswers[1] = "I'm getting some shrooms *heheheheh*";
+        wizardAnswers[1] = "I'm just getting some shrooms *heheheheh*";
         wizardAnswers[2] = "Bye *hehehehe* bye";
+
+        //fill ghostlady answers array
+        ghostladyAnswers[0] = "Grüezi";
+        ghostladyAnswers[1] = "Grüezi";
+        ghostladyAnswers[2] = "Grüezi";
 
         //create creatures
         Creature wizard = new Creature("Magicman", "Hello my friend. My name is Magicman! How can I help you?!?!", wizardOptions, wizardAnswers);
+        Creature ghostlady = new Creature("Ghostlady", "Ich grüsse Sie.", ghostladyOptiones, ghostladyAnswers);
 
         //add creatures to place
         clearing.addCreatures(wizard);
+        cabin.addCreatures(ghostlady);
     }
 
     //Start method of the Textadventure!
